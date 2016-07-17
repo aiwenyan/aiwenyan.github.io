@@ -46,6 +46,7 @@ function getHeartPoint(angle) {
 }
 
 function startHeartAnimation() {
+	showMessages();
 	var interval = 50;
 	var angle = 10;
 	var heart = new Array();
@@ -96,8 +97,10 @@ function startHeartAnimation() {
 })(jQuery);
 
 function timeElapse(date){
-	var current = Date();
+
+	var current = new Date();
 	var seconds = (Date.parse(current) - Date.parse(date)) / 1000;
+	console.log("seconds: " + seconds);
 	var days = Math.floor(seconds / (3600 * 24));
 	seconds = seconds % (3600 * 24);
 	var hours = Math.floor(seconds / 3600);
@@ -113,13 +116,15 @@ function timeElapse(date){
 	if (seconds < 10) {
 		seconds = "0" + seconds;
 	}
+	console.log("current: " + current + " date:" + date);
+
 	var result = "<span class=\"digit\">" + days + "</span> days <span class=\"digit\">" + hours + "</span> hours <span class=\"digit\">" + minutes + "</span> minutes <span class=\"digit\">" + seconds + "</span> seconds"; 
 	$("#elapseClock").html(result);
 }
 
 function showMessages() {
 	adjustWordsPosition();
-	$('#messages').fadeIn(5000, function() {
+	$('#messages').fadeIn(1000, function() {
 		showLoveU();
 	});
 }
